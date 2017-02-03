@@ -1,0 +1,25 @@
+﻿@{
+	string strCurrentCultureName =
+		System.Threading.Thread.CurrentThread.CurrentCulture.Name.ToUpper().Substring(0, 2);
+
+	switch (strCurrentCultureName)
+	{
+		case "FA":
+		case "AR":
+		{
+			Layout =
+				MVC.Shared.Views.Layouts.Default_fa_IR;
+
+			break;
+		}
+
+		default:
+		{
+			Layout =
+				MVC.Shared.Views.Layouts.Default;
+
+			break;
+		}
+	}
+
+}

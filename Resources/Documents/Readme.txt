@@ -1,0 +1,1 @@
+﻿INSTALL-PACKAGE SmartStringResources

@@ -1,0 +1,45 @@
+﻿<#@ Template Debug="False" Hostspecific="True" Language="C#" #>
+<#@ Output Extension=".txt" #>
+<#@ Assembly Name="$(TargetDir)SmartStringResources.dll" #>
+<#@ Import Namespace="SmartStringResources" #>
+<#
+var options = new GeneratorOptions
+{
+	// Indicates if resource methods should be generated - default is true
+	GenerateResources = true,
+
+	// Sets the accesibility level of generated resource class
+	// It can be: Public, Internal or Default
+	// Default means the same accessibility level of the resx
+	ResourcesAccessibilityLevel = AccessibilityLevel.Default,
+
+	// Indicates if resource keys constants should be generated - default is true
+	GenerateResourceKeys = true,
+	
+	// Sets the accesibility level of generated resource keys class
+	// It can be: Public, Internal or Default
+	// Default means the same accessibility level of the resx
+	ResourceKeysAccessibilityLevel = AccessibilityLevel.Default,
+
+	// Sets the resource methods namespace - null defaults to resx namespace + ".Strings" (i.e. MyProject.Properties.Strings)
+	// It's possible to reference resources default namespace by using the GeneratorOptions.DefaultResourcesNamespaceTemplate constant
+	// (i.e. GeneratorOptions.DefaultResourcesNamespaceTemplate + ".MyStrings" will be translated to "MyProject.Properties.MyStrings")
+	TargetResourcesNamespace = null,
+
+	// Sets the resource methods class name - null defaults to resx class name (i.e. Resources)
+	// It's possible to reference resources default class name by using the GeneratorOptions.DefaultResourcesClassNameTemplate constant
+	// (i.e. GeneratorOptions.DefaultResourcesClassNameTemplate + "_MyStrings" will be translated to "Resources_MyStrings")
+	TargetResourcesClassName = null,
+
+	// Sets the resource keys namespace - null defaults to resource methods namespace (i.e. MyProject.Properties.Strings)
+	// It's possible to reference resources methods namespace by using the GeneratorOptions.TargetResourcesNamespaceTemplate constant
+	// (i.e. GeneratorOptions.TargetResourcesNamespaceTemplate + ".Keys" will be translated to "MyProject.Properties.Strings.Keys")
+	TargetResourceKeysNamespace = null,
+
+	// Sets the resource keys class name - null defaults to resource methods class name + "Keys" (i.e. ResourcesKeys)
+	// It's possible to reference resources methods class name by using the GeneratorOptions.TargetResourcesClassNameTemplate constant
+	// (i.e. GeneratorOptions.TargetResourcesClassNameTemplate + "_Keys" will be translated to "Resources_Keys")
+	TargetResourceKeysClassName = null
+};
+#>
+<#= SmartStringResourcesGenerator.Generate(Host, Host.TemplateFile, options) #>
